@@ -1,13 +1,5 @@
-<% if @article.errors.any? %>
-        <ul>
-            <% @article.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-        </ul>
-
-    <% end %>
+<%= render 'shared/error', obj: @article %>
     
-
     <%= form_with scope: :article, url: articles_path, data: { turbo: false }, local: true do |f| %>
         <p> 
           <%= f.label :title %><br/> 

@@ -1,0 +1,21 @@
+    
+<%= render 'shared/error', obj: @user %>
+  <%= form_with(model: @user, data: { turbo: false }, local: true) do |f| %>
+    <p> 
+      <%= f.label :username %><br/> 
+      <%= f.text_field :username, placeholder: "Enter a username" %>
+    </p>
+    <p>
+      <%= f.label :email %><br/> 
+      <%= f.email_field :email, placeholder: "Enter a email" %> 
+    </p> 
+    <p>
+      <%= f.label :password %><br/> 
+      <%= f.password_field :password, placeholder: "Enter a password" %> 
+    </p> 
+    <p>
+      <%= f.submit %> 
+    </p>
+    <% end %>
+
+    <%= link_to '[ Cancel and return to articles listing ]', articles_path %>
