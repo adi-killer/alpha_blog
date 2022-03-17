@@ -22,14 +22,11 @@ class ArticlesController < ApplicationController
         flash[:notice] = "Article was created successfully."
         redirect_to @article 
       else
-        # redirect_to "/new"
-        puts @article.errors
         render 'new'
       end
     end
 
     def destroy
-      puts @article.title
       @article.destroy
       redirect_to articles_path
     end
