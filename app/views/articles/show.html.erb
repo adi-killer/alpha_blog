@@ -5,12 +5,15 @@
         <div class="card text-center shadow mb-5 bg-white rounded">
            <div class="card-header font-italic" style="font-size: 1.5em">
            <%= @article.user.username %>
+           <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
             </div>
             <div class="card-body">
             <div class="card-text text-left"><%= simple_format(@article.description) %></div>
-            <%= button_to "Edit", edit_article_path(@article), class: "btn btn-outline-info" %>
-            <%= button_to "Delete", article_path(@article), method: :delete, class: "btn btn-outline-danger" %>
+            <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+              <%= button_to "Edit", edit_article_path(@article), class: "btn btn-outline-info" %>
+              <%= button_to "Delete", article_path(@article), method: :delete, class: "btn btn-outline-danger" %>
             </div>
+            <% end %>
             <div class="card-footer text-muted">
             <small>Created <%= time_ago_in_words(@article.created_at) %> ago, 
             edited <%= time_ago_in_words(@article.updated_at) %> ago</small>
