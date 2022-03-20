@@ -6,12 +6,15 @@
            <div class="card-header font-italic" style="font-size: 1.5em">
            <%= @article.user.username %>
            <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
+           <% if @article.categories.any? %>
+            <div class="mt-2"><%= render @article.categories %></div> 
+           <% end %>
             </div>
             <div class="card-body">
             <div class="card-text text-left"><%= simple_format(@article.description) %></div>
             <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
               <%= button_to "Edit", edit_article_path(@article), class: "btn btn-outline-info" %>
-              <%= button_to "Delete", article_path(@article), method: :delete, class: "btn btn-outline-danger" %>
+              <%= button_to "Delete", article_path(@article),  form: {style: 'display:inline-block;'}, method: :delete, class: "btn btn-outline-danger" %>
             </div>
             <% end %>
             <div class="card-footer text-muted">
